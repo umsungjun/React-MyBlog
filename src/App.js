@@ -13,9 +13,12 @@ function App() {
   // root url : main page component
   // tech url : tech page component
   // blog url : blog page component
+
+
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path={'/'} element={<MainPage />}></Route>
         <Route path={'tech'} element={<TechPage />}>
           <Route path='javascript' element={<JavascriptPage />} />
