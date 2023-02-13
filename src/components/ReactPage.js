@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
+import axios from 'axios'
 
 export default function ReactPage() {
 
@@ -8,12 +9,14 @@ export default function ReactPage() {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+            const result = await axios.get('https://jsonplaceholder.typicode.com/posts')
             // console.log(res)
-            const result = await res.json()
+            // const result = await res.json()
             // console.log(result)
             // setDocs(result)
-            return result
+            console.log(result)
+            console.log(result.data)
+            return result.data
         }
 
         fetchData().then(res => {
@@ -24,7 +27,7 @@ export default function ReactPage() {
     return (
         <div>
             {docs.map(doc => (
-                <Link style={{ display: 'block', margin: '1rem 0' }} to={`${doc.id}`} key={doc.id}>{doc.title}</Link>
+                <Link style={{ display: 'block', margin: '1rem 0' }} to={`${doc.id}`} key={doc.id} >{doc.title}</Link>
             ))}
         </div>
     )
