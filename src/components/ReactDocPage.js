@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 export default function ReactDocPage() {
     const params = useParams()
-    // console.log(params)
+    console.log(params)
     const navigate = useNavigate()
     return (
         <>

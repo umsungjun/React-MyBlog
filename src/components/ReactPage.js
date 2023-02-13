@@ -1,40 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 
 export default function ReactPage() {
 
-    const docs = [
-        {
-            id: 1,
-            title: 'React를 공부를 시작하면서1',
-            date: '05/01/2021 1'
-        },
-        {
-            id: 2,
-            title: 'React를 공부를 시작하면서2',
-            date: '05/01/2021 2'
-        },
-        {
-            id: 3,
-            title: 'React를 공부를 시작하면서3',
-            date: '05/01/2021 3'
-        },
-        {
-            id: 4,
-            title: 'React를 공부를 시작하면서4',
-            date: '05/01/2021 4'
-        },
-        {
-            id: 5,
-            title: 'React를 공부를 시작하면서5',
-            date: '05/01/2021 5'
-        },
-    ]
+    const [docs, setDocs] = useState([])
+
+
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+            // console.log(res)
+            const result = await res.json()
+            // console.log(result)
+            // setDocs(result)
+            return result
+        }
+
+        fetchData().then(res => {
+            setDocs(res)
+        })
+    }, []) // 한번 실행해야하니까
 
     return (
         <div>
             {docs.map(doc => (
-                <Link to={`${doc.id}`} key={doc.id}>{doc.title} <br /></Link>
+                <Link style={{ display: 'block', margin: '1rem 0' }} to={`${doc.id}`} key={doc.id}>{doc.title}</Link>
             ))}
         </div>
     )

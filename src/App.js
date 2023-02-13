@@ -18,7 +18,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path={'/'} element={<MainPage />}></Route>
         <Route path={'tech'} element={<TechPage />}>
           <Route path='javascript' element={<JavascriptPage />} />
